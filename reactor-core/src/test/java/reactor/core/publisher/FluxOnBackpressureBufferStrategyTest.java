@@ -471,7 +471,7 @@ public class FluxOnBackpressureBufferStrategyTest implements Consumer<String>,
 			fail("expected NullPointerException");
 		}
 		catch (NullPointerException e) {
-			assertThat(e.getMessage()).isEqualTo("onBufferOverflow");
+			assertThat(e).hasMessage("onBufferOverflow");
 		}
 	}
 
@@ -484,7 +484,7 @@ public class FluxOnBackpressureBufferStrategyTest implements Consumer<String>,
 			fail("expected NullPointerException");
 		}
 		catch (NullPointerException e) {
-			assertThat(e.getMessage()).isEqualTo("bufferOverflowStrategy");
+			assertThat(e).hasMessage("bufferOverflowStrategy");
 		}
 	}
 

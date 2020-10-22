@@ -181,30 +181,30 @@ public class FluxRefCountTest {
 
 		Flux<Integer> p = e.publish().refCount();
 
-		assertThat(e.downstreamCount() != 0).as("sp has subscribers?").isFalse();
+		assertThat(e.downstreamCount()).as("sp has subscribers?").isEqualTo(0L);
 
 		AssertSubscriber<Integer> ts1 = AssertSubscriber.create();
 		p.subscribe(ts1);
 
-		assertThat(e.downstreamCount() != 0).as("sp has no subscribers?").isTrue();
+		assertThat(e.downstreamCount()).as("sp has no subscribers?").isNotEqualTo(0L);
 
 		AssertSubscriber<Integer> ts2 = AssertSubscriber.create();
 		p.subscribe(ts2);
 
-		assertThat(e.downstreamCount() != 0).as("sp has no subscribers?").isTrue();
+		assertThat(e.downstreamCount()).as("sp has no subscribers?").isNotEqualTo(0L);
 
 		e.onNext(1);
 		e.onNext(2);
 
 		ts1.cancel();
 
-		assertThat(e.downstreamCount() != 0).as("sp has no subscribers?").isTrue();
+		assertThat(e.downstreamCount()).as("sp has no subscribers?").isNotEqualTo(0L);
 
 		e.onNext(3);
 
 		ts2.cancel();
 
-		assertThat(e.downstreamCount() != 0).as("sp has subscribers?").isFalse();
+		assertThat(e.downstreamCount()).as("sp has subscribers?").isEqualTo(0L);
 
 		ts1.assertValues(1, 2)
 		.assertNoError()
@@ -221,30 +221,30 @@ public class FluxRefCountTest {
 
 		Flux<Integer> p = e.publish().refCount(2);
 
-		assertThat(e.downstreamCount() != 0).as("sp has subscribers?").isFalse();
+		assertThat(e.downstreamCount()).as("sp has subscribers?").isEqualTo(0L);
 
 		AssertSubscriber<Integer> ts1 = AssertSubscriber.create();
 		p.subscribe(ts1);
 
-		assertThat(e.downstreamCount() != 0).as("sp has subscribers?").isFalse();
+		assertThat(e.downstreamCount()).as("sp has subscribers?").isEqualTo(0L);
 
 		AssertSubscriber<Integer> ts2 = AssertSubscriber.create();
 		p.subscribe(ts2);
 
-		assertThat(e.downstreamCount() != 0).as("sp has no subscribers?").isTrue();
+		assertThat(e.downstreamCount()).as("sp has no subscribers?").isNotEqualTo(0L);
 
 		e.onNext(1);
 		e.onNext(2);
 
 		ts1.cancel();
 
-		assertThat(e.downstreamCount() != 0).as("sp has no subscribers?").isTrue();
+		assertThat(e.downstreamCount()).as("sp has no subscribers?").isNotEqualTo(0L);
 
 		e.onNext(3);
 
 		ts2.cancel();
 
-		assertThat(e.downstreamCount() != 0).as("sp has subscribers?").isFalse();
+		assertThat(e.downstreamCount()).as("sp has subscribers?").isEqualTo(0L);
 
 		ts1.assertValues(1, 2)
 		.assertNoError()

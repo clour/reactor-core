@@ -146,10 +146,10 @@ public class MonoZipTest {
 		Mono<Tuple2<Integer, String>> f = Mono.just(1)
 		                                      .zipWith(Mono.just("test2"));
 
-		assertThat(f instanceof MonoZip).isTrue();
+		assertThat(f).isInstanceOf(MonoZip.class);
 		MonoZip<?, ?> s = (MonoZip<?, ?>) f;
-		assertThat(s.sources != null).isTrue();
-		assertThat(s.sources.length == 2).isTrue();
+		assertThat(s.sources).isNotNull();
+		assertThat(s.sources).hasSize(2);
 
 		f.subscribeWith(AssertSubscriber.create())
 		 .assertValues(Tuples.of(1, "test2"))
@@ -162,10 +162,10 @@ public class MonoZipTest {
 				Mono.zip(Mono.just(1), Mono.just("test"))
 				    .zipWith(Mono.just("test2"));
 
-		assertThat(f instanceof MonoZip).isTrue();
+		assertThat(f).isInstanceOf(MonoZip.class);
 		MonoZip<?, ?> s = (MonoZip<?, ?>) f;
-		assertThat(s.sources != null).isTrue();
-		assertThat(s.sources.length == 3).isTrue();
+		assertThat(s.sources).isNotNull();
+		assertThat(s.sources).hasSize(3);
 
 		Mono<Tuple2<Integer, String>> ff = f.map(t -> Tuples.of(t.getT1()
 		                                                         .getT1(),
@@ -184,10 +184,10 @@ public class MonoZipTest {
 						obj -> Tuples.of((int) obj[0], (String) obj[1]))
 				    .zipWith(Mono.just("test2"));
 
-		assertThat(f instanceof MonoZip).isTrue();
+		assertThat(f).isInstanceOf(MonoZip.class);
 		MonoZip<?, ?> s = (MonoZip<?, ?>) f;
-		assertThat(s.sources != null).isTrue();
-		assertThat(s.sources.length == 2).isTrue();
+		assertThat(s.sources).isNotNull();
+		assertThat(s.sources).hasSize(2);
 
 		Mono<Tuple2<Integer, String>> ff = f.map(t -> Tuples.of(t.getT1()
 		                                                         .getT1(),

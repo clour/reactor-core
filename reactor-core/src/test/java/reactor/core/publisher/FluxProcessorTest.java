@@ -222,7 +222,6 @@ public class FluxProcessorTest {
 				            }
 				            catch (InterruptedException e) {
 					            fail("Unexpected InterruptedException");
-					            fail("Unexpected InterruptedException");
 				            }
 				            w2.schedule(() -> {
 					            serialized.onNext("test2");

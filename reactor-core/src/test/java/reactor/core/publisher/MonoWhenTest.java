@@ -34,10 +34,10 @@ public class MonoWhenTest {
 		Mono<Void> f = Mono.just(1)
 		                   .and(Mono.just("test2"));
 
-		assertThat(f instanceof MonoWhen).isTrue();
+		assertThat(f).isInstanceOf(MonoWhen.class);
 		MonoWhen s = (MonoWhen) f;
-		assertThat(s.sources != null).isTrue();
-		assertThat(s.sources.length == 2).isTrue();
+		assertThat(s.sources).isNotNull();
+		assertThat(s.sources).hasSize(2);
 
 		f.subscribeWith(AssertSubscriber.create())
 		 .assertComplete()

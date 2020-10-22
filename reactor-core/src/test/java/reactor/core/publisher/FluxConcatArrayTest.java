@@ -173,10 +173,10 @@ public class FluxConcatArrayTest {
 		Flux<String> f = Flux.concat(Flux.just("test"), Flux.just("test2"))
 		                     .concatWith(Flux.just("test3"));
 
-		assertThat(f instanceof FluxConcatArray).isTrue();
+		assertThat(f).isInstanceOf(FluxConcatArray.class);
 		FluxConcatArray<String> s = (FluxConcatArray<String>) f;
-		assertThat(s.array != null).isTrue();
-		assertThat(s.array.length == 3).isTrue();
+		assertThat(s.array).isNotNull();
+		assertThat(s.array).hasSize(3);
 
 		StepVerifier.create(f)
 	                .expectNext("test", "test2", "test3")
@@ -189,10 +189,10 @@ public class FluxConcatArrayTest {
 		Flux<String> f = Mono.just("test")
 		                     .concatWith(Flux.just("test2"));
 
-		assertThat(f instanceof FluxConcatArray).isTrue();
+		assertThat(f).isInstanceOf(FluxConcatArray.class);
 		FluxConcatArray<String> s = (FluxConcatArray<String>) f;
-		assertThat(s.array != null).isTrue();
-		assertThat(s.array.length == 2).isTrue();
+		assertThat(s.array).isNotNull();
+		assertThat(s.array).hasSize(2);
 
 		StepVerifier.create(f)
 	                .expectNext("test", "test2")

@@ -182,11 +182,11 @@ public class FluxPublishMulticastTest extends FluxOperatorTest<String, String> {
 		sp.publish(o -> Flux.<Integer>never())
 		  .subscribe(ts);
 
-		assertThat(sp.downstreamCount() != 0).as("Not subscribed?").isTrue();
+		assertThat(sp.downstreamCount()).as("Not subscribed?").isNotEqualTo(0L);
 
 		ts.cancel();
 
-		assertThat(sp.downstreamCount() == 0).as("Still subscribed?").isTrue();
+		assertThat(sp.downstreamCount()).as("Still subscribed?").isEqualTo(0L);
 	}
 
 	@Test
@@ -198,7 +198,7 @@ public class FluxPublishMulticastTest extends FluxOperatorTest<String, String> {
 		sp.publish(o -> Flux.<Integer>empty())
 		  .subscribe(ts);
 
-		assertThat(sp.downstreamCount() == 1).as("Still subscribed?").isFalse();
+		assertThat(sp.downstreamCount()).as("Still subscribed?").isNotEqualTo(1L);
 	}
 
 	@Test

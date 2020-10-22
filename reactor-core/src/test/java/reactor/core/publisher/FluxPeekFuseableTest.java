@@ -244,7 +244,7 @@ public class FluxPeekFuseableTest {
 			fail("Exception expected");
 		}
 		catch (Exception e) {
-			assertThat(Exceptions.unwrap(e) == err).isTrue();
+			assertThat(Exceptions.unwrap(e)).isSameAs(err);
 		}
 	}
 
@@ -275,7 +275,7 @@ public class FluxPeekFuseableTest {
 			fail("Exception expected");
 		}
 		catch (Exception e) {
-			assertThat(Exceptions.unwrap(e) == err).isTrue();
+			assertThat(Exceptions.unwrap(e)).isSameAs(err);
 		}
 	}
 
@@ -330,7 +330,7 @@ public class FluxPeekFuseableTest {
 			fail("Exception expected");
 		}
 		catch (Exception e) {
-			assertThat(Exceptions.unwrap(e) == err).isTrue();
+			assertThat(Exceptions.unwrap(e)).isSameAs(err);
 		}
 	}
 
@@ -493,7 +493,7 @@ public class FluxPeekFuseableTest {
 		    .subscribe(ts);
 
 		Subscription s = ts.upstream();
-		assertThat(s instanceof QueueSubscription).as("Non-fuseable upstream: " + s).isTrue();
+		assertThat(s).as("Non-fuseable upstream: " + s).isInstanceOf(QueueSubscription.class);
 	}
 
 	@Test
@@ -506,7 +506,7 @@ public class FluxPeekFuseableTest {
 		                .subscribe(ts);
 
 		Subscription s = ts.upstream();
-		assertThat(s instanceof QueueSubscription).as("Non-fuseable upstream" + s).isTrue();
+		assertThat(s).as("Non-fuseable upstream" + s).isInstanceOf(QueueSubscription.class);
 	}
 
 	@Test

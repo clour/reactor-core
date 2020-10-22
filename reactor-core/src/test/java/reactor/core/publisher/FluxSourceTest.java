@@ -36,7 +36,7 @@ public class FluxSourceTest {
 	@Test
 	public void empty() {
 		Flux<Integer> m = Flux.from(Mono.empty());
-		assertThat(m == Flux.<Integer>empty()).isTrue();
+		assertThat(m).isSameAs(Flux.<Integer>empty());
 		StepVerifier.create(m)
 		            .verifyComplete();
 	}
@@ -44,7 +44,7 @@ public class FluxSourceTest {
 	@Test
 	public void just() {
 		Flux<Integer> m = Flux.from(Mono.just(1));
-		assertThat(m instanceof FluxJust).isTrue();
+		assertThat(m).isInstanceOf(FluxJust.class);
 		StepVerifier.create(m)
 		            .expectNext(1)
 		            .verifyComplete();
@@ -53,7 +53,7 @@ public class FluxSourceTest {
 	@Test
 	public void error() {
 		Flux<Integer> m = Flux.from(Mono.error(new Exception("test")));
-		assertThat(m instanceof FluxError).isTrue();
+		assertThat(m).isInstanceOf(FluxError.class);
 		StepVerifier.create(m)
 		            .verifyErrorMessage("test");
 	}
@@ -61,7 +61,7 @@ public class FluxSourceTest {
 	@Test
 	public void errorPropagate() {
 		Flux<Integer> m = Flux.from(Mono.error(new Error("test")));
-		assertThat(m instanceof FluxError).isTrue();
+		assertThat(m).isInstanceOf(FluxError.class);
 		StepVerifier.create(m)
 		            .verifyErrorMessage("test");
 	}

@@ -39,7 +39,7 @@ public class FluxJustTest {
     @Test
     @SuppressWarnings("unchecked")
     public void valueSame() throws Exception {
-        assertThat(((Callable<Integer>)Flux.just(1)).call()).isSameAs(1);
+        assertThat(((Callable<Integer>)Flux.just(1)).call()).isEqualTo(1);
     }
 
     @Test

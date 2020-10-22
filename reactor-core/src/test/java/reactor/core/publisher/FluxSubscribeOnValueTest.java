@@ -54,7 +54,7 @@ public class FluxSubscribeOnValueTest {
 		int minExec = 2;
 
 		for (Integer counted : execs.values()) {
-			assertThat(counted >= minExec).as("Thread used less than " + minExec + " " + "times").isTrue();
+			assertThat(counted).as("Thread used less than " + minExec + " " + "times").isGreaterThanOrEqualTo(minExec);
 		}
 
 	}

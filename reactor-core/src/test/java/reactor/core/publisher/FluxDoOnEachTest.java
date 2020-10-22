@@ -437,7 +437,7 @@ public class FluxDoOnEachTest {
 			fail("Exception expected");
 		}
 		catch (Exception e) {
-			assertThat(Exceptions.unwrap(e) == err).isTrue();
+			assertThat(Exceptions.unwrap(e)).isSameAs(err);
 			assertThat(state.intValue()).isEqualTo(1);
 		}
 	}

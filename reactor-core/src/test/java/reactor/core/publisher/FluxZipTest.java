@@ -388,10 +388,10 @@ public class FluxZipTest extends FluxOperatorTest<String, String> {
 				Flux.zip(Flux.just(1), Flux.just("test"))
 				    .zipWith(Flux.just("test2"));
 
-		assertThat(f instanceof FluxZip).isTrue();
+		assertThat(f).isInstanceOf(FluxZip.class);
 		FluxZip<?, ?> s = (FluxZip<?, ?>) f;
-		assertThat(s.sources != null).isTrue();
-		assertThat(s.sources.length == 3).isTrue();
+		assertThat(s.sources).isNotNull();
+		assertThat(s.sources).hasSize(3);
 
 		Flux<Tuple2<Integer, String>> ff = f.map(t -> Tuples.of(t.getT1()
 		                                                         .getT1(),
@@ -409,10 +409,10 @@ public class FluxZipTest extends FluxOperatorTest<String, String> {
 				Flux.zip(Flux.just(1), Flux.just("test"), Flux.just("test0"))
 				    .zipWith(Flux.just("test2"));
 
-		assertThat(f instanceof FluxZip).isTrue();
+		assertThat(f).isInstanceOf(FluxZip.class);
 		FluxZip<?, ?> s = (FluxZip<?, ?>) f;
-		assertThat(s.sources != null).isTrue();
-		assertThat(s.sources.length == 2).isTrue();
+		assertThat(s.sources).isNotNull();
+		assertThat(s.sources).hasSize(2);
 
 		Flux<Tuple2<Integer, String>> ff = f.map(t -> Tuples.of(t.getT1()
 		                                                         .getT1(),
@@ -433,10 +433,10 @@ public class FluxZipTest extends FluxOperatorTest<String, String> {
 				                 .hide()
 				                 .doOnRequest(ref::set), 1);
 
-		assertThat(f instanceof FluxZip).isTrue();
+		assertThat(f).isInstanceOf(FluxZip.class);
 		FluxZip<?, ?> s = (FluxZip<?, ?>) f;
-		assertThat(s.sources != null).isTrue();
-		assertThat(s.sources.length == 2).isTrue();
+		assertThat(s.sources).isNotNull();
+		assertThat(s.sources).hasSize(2);
 
 		Flux<Tuple2<Integer, String>> ff = f.map(t -> Tuples.of(t.getT1()
 		                                                         .getT1(),
@@ -456,10 +456,10 @@ public class FluxZipTest extends FluxOperatorTest<String, String> {
 						obj -> Tuples.of((int) obj[0], (String) obj[1]))
 				    .zipWith(Flux.just("test2"));
 
-		assertThat(f instanceof FluxZip).isTrue();
+		assertThat(f).isInstanceOf(FluxZip.class);
 		FluxZip<?, ?> s = (FluxZip<?, ?>) f;
-		assertThat(s.sources != null).isTrue();
-		assertThat(s.sources.length == 2).isTrue();
+		assertThat(s.sources).isNotNull();
+		assertThat(s.sources).hasSize(2);
 
 		Flux<Tuple2<Integer, String>> ff = f.map(t -> Tuples.of(t.getT1()
 		                                                         .getT1(),

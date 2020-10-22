@@ -76,7 +76,7 @@ public class BlockingIterableTest {
 			values.add(i);
 		}
 
-		assertThat(values).isEqualTo(Collections.emptyList());
+		assertThat(values).isEmpty();
 	}
 
 	@Test
@@ -90,7 +90,7 @@ public class BlockingIterableTest {
 			}
 		});
 
-		assertThat(values).isEqualTo(Collections.emptyList());
+		assertThat(values).isEmpty();
 	}
 
 	@Test
@@ -113,7 +113,7 @@ public class BlockingIterableTest {
 		FluxEmpty.<Integer>instance().toStream()
 		                             .forEach(values::add);
 
-		assertThat(values).isEqualTo(Collections.emptyList());
+		assertThat(values).isEmpty();
 	}
 
 	@Test
@@ -140,7 +140,7 @@ public class BlockingIterableTest {
 		                            .max(Integer::compare);
 
 		assertThat(opt.isPresent()).as("No maximum?").isTrue();
-		assertThat(opt.get()).isEqualTo((Integer) n);
+		assertThat(opt.get()).isEqualTo(n);
 	}
 
 	@Test

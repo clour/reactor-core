@@ -48,14 +48,14 @@ public class ExceptionsTest {
 
 		Throwable w = Exceptions.bubble(Exceptions.propagate(t));
 
-		assertThat(Exceptions.unwrap(w) == t).isTrue();
+		assertThat(Exceptions.unwrap(w)).isSameAs(t);
 	}
 
 	@Test
 	public void nullBubble() throws Exception {
 		Throwable w = Exceptions.bubble(null);
 
-		assertThat(Exceptions.unwrap(w) == w).isTrue();
+		assertThat(Exceptions.unwrap(w)).isSameAs(w);
 	}
 
 	@Test

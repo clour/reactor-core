@@ -47,11 +47,11 @@ public class FluxAutoConnectTest {
 		
 		e.publish().autoConnect(0, cancel::set);
 		
-		assertThat(cancel.get()).isNotNull();
-		assertThat(e.downstreamCount() != 0).as("sp has no subscribers?").isTrue();
+		assertThat(cancel).doesNotHaveValue(null);
+		assertThat(e.downstreamCount()).as("sp has no subscribers?").isNotEqualTo(0L);
 
 		cancel.get().dispose();
-		assertThat(e.downstreamCount() != 0).as("sp has subscribers?").isFalse();
+		assertThat(e.downstreamCount()).as("sp has subscribers?").isEqualTo(0L);
 	}
 
 	@Test
@@ -62,21 +62,21 @@ public class FluxAutoConnectTest {
 		
 		Flux<Integer> p = e.publish().autoConnect(2, cancel::set);
 		
-		assertThat(cancel.get()).isNull();
-		assertThat(e.downstreamCount() != 0).as("sp has subscribers?").isFalse();
+		assertThat(cancel).hasValue(null);
+		assertThat(e.downstreamCount()).as("sp has subscribers?").isEqualTo(0L);
 		
 		p.subscribe(AssertSubscriber.create());
 		
-		assertThat(cancel.get()).isNull();
-		assertThat(e.downstreamCount() != 0).as("sp has subscribers?").isFalse();
+		assertThat(cancel).hasValue(null);
+		assertThat(e.downstreamCount()).as("sp has subscribers?").isEqualTo(0L);
 
 		p.subscribe(AssertSubscriber.create());
 
 		assertThat(cancel.get()).isNotNull();
-		assertThat(e.downstreamCount() != 0).as("sp has no subscribers?").isTrue();
+		assertThat(e.downstreamCount()).as("sp has subscribers?").isNotEqualTo(0L);
 		
 		cancel.get().dispose();
-		assertThat(e.downstreamCount() != 0).as("sp has subscribers?").isFalse();
+		assertThat(e.downstreamCount()).as("sp has subscribers?").isEqualTo(0L);
 	}
 
 	@Test

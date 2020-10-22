@@ -60,10 +60,10 @@ public class MonoFirstTest {
 		Mono<Integer> f = Mono.first(Mono.just(1), Mono.just(2))
 		                      .or(Mono.just(3));
 
-		assertThat(f instanceof MonoFirst).isTrue();
+		assertThat(f).isInstanceOf(MonoFirst.class);
 		MonoFirst<Integer> s = (MonoFirst<Integer>) f;
-		assertThat(s.array != null).isTrue();
-		assertThat(s.array.length == 3).isTrue();
+		assertThat(s.array).isNotNull();
+		assertThat(s.array).hasSize(3);
 
 		f.subscribeWith(AssertSubscriber.create())
 		 .assertValues(1)
@@ -99,10 +99,10 @@ public class MonoFirstTest {
 		Mono<Integer> f = Mono.first(Arrays.asList(Mono.just(1), Mono.just(2)))
 		                      .or(Mono.just(3));
 
-		assertThat(f instanceof MonoFirst).isTrue();
+		assertThat(f).isInstanceOf(MonoFirst.class);
 		MonoFirst<Integer> s = (MonoFirst<Integer>) f;
-		assertThat(s.array != null).isTrue();
-		assertThat(s.array.length == 2).isTrue();
+		assertThat(s.array).isNotNull();
+		assertThat(s.array).hasSize(2);
 
 		f.subscribeWith(AssertSubscriber.create())
 		 .assertValues(1)

@@ -382,8 +382,8 @@ public class FluxFlatMapTest {
 		.assertNoError()
 		.assertNotComplete();
 
-		assertThat(source1.downstreamCount() != 0).as("source1 no subscribers?").isTrue();
-		assertThat(source2.downstreamCount() != 0).as("source2 has subscribers?").isFalse();
+		assertThat(source1.downstreamCount()).as("source1 no subscribers?").isNotEqualTo(0L);
+		assertThat(source2.downstreamCount()).as("source2 has subscribers?").isEqualTo(0L);
 
 		source1.onNext(1);
 		source2.onNext(10);
@@ -417,8 +417,8 @@ public class FluxFlatMapTest {
 		.assertNoError()
 		.assertNotComplete();
 
-		assertThat(source1.downstreamCount() != 0).as("source1 no subscribers?").isTrue();
-		assertThat(source2.downstreamCount() != 0).as("source2 no  subscribers?").isTrue();
+		assertThat(source1.downstreamCount()).as("source1 no subscribers?").isNotEqualTo(0L);
+		assertThat(source2.downstreamCount()).as("source2 has subscribers?").isNotEqualTo(0L);
 
 		source1.onNext(1);
 		source1.onComplete();

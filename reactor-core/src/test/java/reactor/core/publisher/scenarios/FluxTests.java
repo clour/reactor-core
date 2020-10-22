@@ -810,7 +810,7 @@ public class FluxTests extends AbstractReactorTest {
 		                  .count()
 		                  .block(Duration.ofSeconds(5));
 
-		assertThat(res == 2_000_000).as("Latch is " + res).isTrue();
+		assertThat(res).as("Latch value").isEqualTo(2_000_000);
 	}
 	@Test
 	public void cancelOn() throws Exception {

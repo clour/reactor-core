@@ -38,7 +38,7 @@ public class MonoJustTest {
     @Test
     public void valueSame() {
 	    try {
-		    assertThat(new MonoJust<>(1).call()).isSameAs(1);
+		    assertThat(new MonoJust<>(1).call()).isEqualTo(1);
 	    }
 	    catch (Exception e) {
 		    e.printStackTrace();

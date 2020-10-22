@@ -436,7 +436,7 @@ public class FluxPeekTest extends FluxOperatorTest<String, String> {
 			fail("Exception expected");
 		}
 		catch (Exception e) {
-			assertThat(Exceptions.unwrap(e) == err).isTrue();
+			assertThat(Exceptions.unwrap(e)).isSameAs(err);
 		}
 	}
 
@@ -469,7 +469,7 @@ public class FluxPeekTest extends FluxOperatorTest<String, String> {
 			fail("Exception expected");
 		}
 		catch (Exception e) {
-			assertThat(Exceptions.unwrap(e) == err).isTrue();
+			assertThat(Exceptions.unwrap(e)).isSameAs(err);
 		}
 	}
 
@@ -534,7 +534,7 @@ public class FluxPeekTest extends FluxOperatorTest<String, String> {
 				fail("Exception expected");
 		}
 		catch (Exception e) {
-			assertThat(Exceptions.unwrap(e) == err).isTrue();
+			assertThat(Exceptions.unwrap(e)).isSameAs(err);
 		}
 	}
 
@@ -716,7 +716,7 @@ public class FluxPeekTest extends FluxOperatorTest<String, String> {
 		    .subscribe(ts);
 
 		Subscription s = ts.upstream();
-		assertThat(s instanceof QueueSubscription).as("Non-fuseable upstream: " + s).isTrue();
+		assertThat(s).as("Non-fuseable upstream: " + s).isInstanceOf(QueueSubscription.class);
 	}
 
 	@Test
@@ -729,7 +729,7 @@ public class FluxPeekTest extends FluxOperatorTest<String, String> {
 		                .subscribe(ts);
 
 		Subscription s = ts.upstream();
-		assertThat(s instanceof QueueSubscription).as("Non-fuseable upstream" + s).isTrue();
+		assertThat(s).as("Non-fuseable upstream" + s).isInstanceOf(QueueSubscription.class);
 	}
 
 	@Test

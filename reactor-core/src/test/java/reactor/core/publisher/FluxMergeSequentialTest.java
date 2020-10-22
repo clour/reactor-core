@@ -564,7 +564,7 @@ public class FluxMergeSequentialTest {
 		try {
 			Flux.mergeSequential(Arrays.asList(source, source, source), 1, -99);
 		} catch (IllegalArgumentException ex) {
-			assertThat(ex.getMessage()).isEqualTo("prefetch > 0 required but it was -99");
+			assertThat(ex).hasMessage("prefetch > 0 required but it was -99");
 		}
 
 	}
@@ -576,7 +576,7 @@ public class FluxMergeSequentialTest {
 		try {
 			Flux.just(source, source, source).flatMapSequential(Flux.identityFunction(), 10, -99);
 		} catch (IllegalArgumentException ex) {
-			assertThat(ex.getMessage()).isEqualTo("prefetch > 0 required but it was -99");
+			assertThat(ex).hasMessage("prefetch > 0 required but it was -99");
 		}
 
 	}

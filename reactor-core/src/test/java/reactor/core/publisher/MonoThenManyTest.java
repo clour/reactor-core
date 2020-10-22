@@ -43,10 +43,10 @@ public class MonoThenManyTest {
 		                         .thenMany(Flux.just("C", "D"))
 		                         .thenMany(Flux.just(1, 2));
 
-		assertThat(test instanceof FluxConcatArray).isTrue();
+		assertThat(test).isInstanceOf(FluxConcatArray.class);
 		FluxConcatArray<Integer> s = (FluxConcatArray<Integer>) test;
 
-		assertThat(s.array.length == 3).isTrue();
+		assertThat(s.array).hasSize(3);
 
 		AssertSubscriber<Integer> ts = AssertSubscriber.create();
 		test.subscribe(ts);
